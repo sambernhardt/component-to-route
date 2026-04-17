@@ -2,6 +2,29 @@
 
 Traces a React component upward through the import/render graph to find all Next.js routes where it appears. Answers the question: **where should I go test this component?**
 
+```
+$ component-to-route packages/design-system/src/components/badge/badge.tsx --dir apps/web
+
+> Badge from `packages/design-system/src/components/badge/badge.tsx`
+> 3 routes found
+
+## /docs (high)
+  -> app/docs/page.tsx
+  -> components/docs-page.tsx
+  -> packages/design-system/src/components/badge/badge.tsx
+
+## /account (medium, shared layout)
+  -> app/account/layout.tsx
+  -> components/account-shell.tsx
+  -> components/status-chip.tsx
+  -> packages/design-system/src/components/badge/badge.tsx
+
+## /settings (medium, shared layout)
+  -> app/settings/page.tsx
+  -> components/settings-panel.tsx
+  -> packages/design-system/src/components/badge/badge.tsx
+```
+
 Useful after editing a shared component in a large app or monorepo — instead of guessing which routes to QA, you get a list with the file chain explaining how each route reaches the component.
 
 ## How it works
