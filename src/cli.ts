@@ -4,7 +4,6 @@ import path from 'node:path';
 
 import { analyzeComponentRoutes } from './analyze.js';
 import { formatHuman, formatJson } from './format.js';
-import { installSkill, uninstallSkill } from './skill.js';
 
 async function main(): Promise<void> {
   const invokedCwd =
@@ -15,19 +14,6 @@ async function main(): Promise<void> {
   if (!first || first === '--help' || first === '-h') {
     printHelp();
     return;
-  }
-
-  if (first === 'skill') {
-    const sub = args[1];
-    if (sub === 'install') {
-      await installSkill();
-      return;
-    }
-    if (sub === 'uninstall') {
-      await uninstallSkill();
-      return;
-    }
-    throw new Error('Usage: component-to-route skill install|uninstall');
   }
 
   const componentPath = first;
@@ -155,7 +141,6 @@ Examples:
   component-to-route src/components/button.tsx
   component-to-route packages/design-system/src/components/button/button.tsx --dir apps/web
   component-to-route src/components/button.tsx --export Button
-  component-to-route skill install
 `;
 
   process.stdout.write(text.trimStart());
