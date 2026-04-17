@@ -1,16 +1,20 @@
 {
   "name": "component-to-route",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1",
   "type": "module",
   "bin": {
     "component-to-route": "./bin/component-to-route.js"
   },
+  "files": [
+    "bin/",
+    "src/",
+    "SKILL.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "dev": "tsx src/cli.ts",
     "check": "tsc -p tsconfig.json --noEmit",
-    "link-global": "npm link"
+    "prepublishOnly": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
     "@types/node": "^25.6.0",

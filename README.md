@@ -21,7 +21,7 @@ Supports both App Router and Pages Router. Works on monorepos with workspace pac
 ### As a Claude Code / Cursor skill
 
 ```bash
-npx skills add <github-repo>
+npx skills add sambernhardt/component-to-route
 ```
 
 Once installed, the agent will automatically invoke `component-to-route` after editing components, and you can ask things like:
@@ -30,16 +30,14 @@ Once installed, the agent will automatically invoke `component-to-route` after e
 
 ### As a standalone CLI
 
-Run from your workspace root (the directory containing your top-level `package.json`):
-
 ```bash
-npm install -g github:sambernhardt/component-to-route
+npm install -g component-to-route
 ```
 
 Or without installing:
 
 ```bash
-npx github:sambernhardt/component-to-route <component-path>
+npx component-to-route <component-path>
 ```
 
 ## Usage
