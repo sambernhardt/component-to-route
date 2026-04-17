@@ -1,0 +1,22 @@
+{
+  "name": "component-to-route",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "component-to-route": "./bin/component-to-route.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/cli.ts",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "link-global": "npm link"
+  },
+  "dependencies": {
+    "@types/node": "^25.6.0",
+    "fast-glob": "^3.3.3",
+    "ts-morph": "^28.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}
