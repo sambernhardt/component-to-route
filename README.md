@@ -78,8 +78,7 @@ component-to-route <component-path> [options]
 | `--dir <path>` | Directory of the Next.js app to search (defaults to cwd) |
 | `--export <name>` | Target a specific exported symbol, e.g. `Button` |
 | `--json` | Full JSON output for programmatic parsing |
-| `--no-cache` | Skip the local analysis cache |
-| `--cache-dir <path>` | Override the cache directory |
+| `--cache-dir <path>` | Enable the analysis cache and write it to `<path>` (off by default) |
 | `--no-build-artifacts` | Skip `.next` manifest enrichment |
 | `--dynamic-imports` | Follow `next/dynamic` and `React.lazy` imports (slower) |
 

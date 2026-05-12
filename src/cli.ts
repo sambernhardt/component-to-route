@@ -27,8 +27,9 @@ async function main(): Promise<void> {
 
   const options = parseOptions(restArgs);
 
-  const cacheDir = options.cacheDir
-    ? path.resolve(invokedCwd, options.cacheDir)
+  const useCache = options.cacheDir !== null;
+  const cacheDir = useCache
+    ? path.resolve(invokedCwd, options.cacheDir as string)
     : path.resolve(invokedCwd, '.cache', 'component-to-route');
 
   const result = await analyzeComponentRoutes({
@@ -36,7 +37,7 @@ async function main(): Promise<void> {
     appRoot: path.resolve(invokedCwd, options.appRoot ?? '.'),
     componentPath: path.resolve(invokedCwd, componentPath),
     exportName: options.exportName ?? undefined,
-    useCache: options.cache,
+    useCache,
     useBuildArtifacts: options.buildArtifacts,
     followDynamicImports: options.dynamicImports,
     cacheDir,
@@ -51,7 +52,6 @@ function parseOptions(args: string[]): {
   appRoot: string | null;
   exportName: string | null;
   json: boolean;
-  cache: boolean;
   cacheDir: string | null;
   buildArtifacts: boolean;
   dynamicImports: boolean;
@@ -59,7 +59,6 @@ function parseOptions(args: string[]): {
   let appRoot: string | null = null;
   let exportName: string | null = null;
   let json = false;
-  let cache = true;
   let cacheDir: string | null = null;
   let buildArtifacts = true;
   let dynamicImports = false;
@@ -81,11 +80,6 @@ function parseOptions(args: string[]): {
 
     if (arg === '--json') {
       json = true;
-      continue;
-    }
-
-    if (arg === '--no-cache') {
-      cache = false;
       continue;
     }
 
@@ -112,7 +106,6 @@ function parseOptions(args: string[]): {
     appRoot,
     exportName,
     json,
-    cache,
     cacheDir,
     buildArtifacts,
     dynamicImports,
@@ -131,8 +124,7 @@ Options:
   --dir <path>           Directory of the Next.js app to search (defaults to cwd)
   --export <name>        Target a specific exported component, e.g. Button
   --json                 Print machine-readable JSON output
-  --no-cache             Disable the local analysis cache
-  --cache-dir <path>     Override the cache directory
+  --cache-dir <path>     Enable the analysis cache and write it to <path>
   --no-build-artifacts   Skip .next manifest enrichment
   --dynamic-imports      Follow next/dynamic and React.lazy imports (slower)
   -h, --help             Show this help
