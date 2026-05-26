@@ -1,6 +1,6 @@
 {
   "name": "component-to-route",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "bin": {
     "component-to-route": "./bin/component-to-route.js"
